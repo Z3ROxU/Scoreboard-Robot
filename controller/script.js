@@ -1,67 +1,102 @@
-function incrementScore(scoreId) {
-  const scoreElement = document.getElementById(scoreId);
-  let currentScore = parseInt(scoreElement.innerText);
-  scoreElement.innerText = currentScore + 1;
-  updateDisplay(scoreId, currentScore + 1);
+function incrementScoreGreen(scoreId) {
+  incrementColorScore(scoreId, 1)
 }
 
-function decrementScore(scoreId) {
-  const scoreElement = document.getElementById(scoreId);
-  let currentScore = parseInt(scoreElement.innerText);
-  if (currentScore > 0) {
-      scoreElement.innerText = currentScore - 1;
-      updateDisplay(scoreId, currentScore - 1);
+function incrementScorePurple(scoreId) {
+  incrementColorScore(scoreId, 5)
+}
+
+function incrementScoreYellow(scoreId) {
+  incrementColorScore(scoreId, 10)
+}
+
+function incrementScoreBlue(scoreId) {
+  incrementColorScore(scoreId, 15)
+}
+
+function incrementColorScore(scoreId, increment) {
+  const scoreElement = document.getElementById(scoreId)
+  let currentScore = parseInt(scoreElement.innerText)
+  scoreElement.innerText = currentScore + increment
+  localStorage.setItem(scoreId, currentScore + increment) // Update localStorage here
+  updateTotalScore(scoreId)
+}
+
+function updateTotalScore(scoreId) {
+  let teamTotalId
+  if (scoreId.startsWith('score1')) {
+    teamTotalId = 'score1'
+  } else if (scoreId.startsWith('score2')) {
+    teamTotalId = 'score2'
   }
+  let teamTotal = 0
+  const colors = ['green', 'purple', 'yellow', 'blue']
+  colors.forEach((color) => {
+    const colorScoreId = `${teamTotalId}${color}`
+    const colorScore = parseInt(document.getElementById(colorScoreId).innerText)
+    teamTotal += colorScore
+  })
+  document.getElementById(teamTotalId).innerText = teamTotal
+  localStorage.setItem(teamTotalId, teamTotal) // Update localStorage for total score
 }
 
 function resetScores() {
-  document.getElementById('score1').innerText = '0';
-  document.getElementById('score2').innerText = '0';
-  updateDisplay('score1', 0);
-  updateDisplay('score2', 0);
+  ;['score1', 'score2'].forEach((team) => {
+    document.getElementById(team).innerText = '0'
+    localStorage.setItem(team, '0')
+    ;['green', 'purple', 'yellow', 'blue'].forEach((color) => {
+      document.getElementById(`${team}${color}`).innerText = '0'
+      localStorage.setItem(`${team}${color}`, '0')
+    })
+  })
 }
 
-let timerInterval;
-let timeLeft = 1800; // 30 minutes in seconds
+function updateDisplay(id, value) {
+  localStorage.setItem(id, value)
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateTimerDisplay()
+  ;['score1', 'score2'].forEach((team) => {
+    localStorage.setItem(team, '0')
+    ;['green', 'purple', 'yellow', 'blue'].forEach((color) => {
+      localStorage.setItem(`${team}${color}`, '0')
+    })
+  })
+})
+
+let timerInterval
+let timeLeft = 1800 // 30 minutes in seconds
 
 function updateTimerDisplay() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  document.getElementById('timer').innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  localStorage.setItem('timer', document.getElementById('timer').innerText);
+  const minutes = Math.floor(timeLeft / 60)
+  const seconds = timeLeft % 60
+  const timeStr = `${minutes}:${seconds.toString().padStart(2, '0')}`
+  document.getElementById('timer').innerText = timeStr
+  localStorage.setItem('timer', timeStr)
 }
 
 function startTimer() {
   if (!timerInterval) {
-      timerInterval = setInterval(() => {
-          if (timeLeft > 0) {
-              timeLeft -= 1;
-              updateTimerDisplay();
-          } else {
-              clearInterval(timerInterval);
-              timerInterval = null;
-          }
-      }, 1000);
+    timerInterval = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft -= 1
+        updateTimerDisplay()
+      } else {
+        clearInterval(timerInterval)
+        timerInterval = null
+      }
+    }, 1000)
   }
 }
 
 function stopTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
+  clearInterval(timerInterval)
+  timerInterval = null
 }
 
 function resetTimer() {
-  stopTimer();
-  timeLeft = 1800;
-  updateTimerDisplay();
+  stopTimer()
+  timeLeft = 1800
+  updateTimerDisplay()
 }
-
-function updateDisplay(id, value) {
-  localStorage.setItem(id, value);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  updateTimerDisplay();
-  localStorage.setItem('score1', '0');
-  localStorage.setItem('score2', '0');
-});
