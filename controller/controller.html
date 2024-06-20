@@ -21,34 +21,67 @@
     </div>
     <div class="p-8">
         <div class="flex justify-between items-center p-10 bg-gray-900 rounded-lg shadow-xl">
-            <div class="bg-red-400 p-12 rounded-lg flex flex-col items-center">
+            <div class="bg-red-500 p-12 rounded-lg flex flex-col items-center">
                 <div class="text-2xl font-bold mb-2 text-slate-50">Team A</div>
                 <div class="text-9xl mb-6 text-slate-50 font-extrabold" id="score1">0</div>
-                <div class="score-controls">
-                    <button
-                        class="inline-block rounded bg-blue-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
-                        onclick="incrementScore('score1')">+1</button>
-                    <button
-                        class="inline-block rounded bg-red-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
-                        onclick="decrementScore('score1')">-1</button>
+                <div class="mb-4 flex items-center gap-2">
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-green-500 font-extrabold" id="score1green">0</div>
+                        <button
+                            class="inline-block rounded bg-green-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScoreGreen('score1green')">+1</button>
+                    </div>
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-purple-500 font-extrabold" id="score1purple">0</div>
+                        <button
+                            class="inline-block rounded bg-purple-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScorePurple('score1purple')">+5</button>
+                    </div>
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-yellow-500 font-extrabold" id="score1yellow">0</div>
+                        <button
+                            class="inline-block rounded bg-yellow-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScoreYellow('score1yellow')">+10</button>
+                    </div>
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-blue-500 font-extrabold" id="score1blue">0</div>
+                        <button
+                            class="inline-block rounded bg-blue-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScoreBlue('score1blue')">+15</button>
+                    </div>
                 </div>
             </div>
             <div class="flex flex-col items-center">
                 <div class="text-9xl font-medium text-yellow-300 mb-7" id="timer">30:00</div>
-                <!-- <button class="bg-yellow-400 p-3 rounded-full hover:bg-yellow-200 font-medium"
-                    onclick="resetTimer()">Reset
-                    Timer</button> -->
             </div>
-            <div class="bg-blue-400 p-12 rounded-lg flex flex-col items-center">
+            <div class="bg-blue-500 p-12 rounded-lg flex flex-col items-center">
                 <div class="text-2xl font-bold mb-2 text-slate-50">Team B</div>
                 <div class="text-9xl mb-6 text-slate-50 font-extrabold" id="score2">0</div>
-                <div class="score-controls">
-                    <button
-                        class="inline-block rounded bg-blue-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
-                        onclick="incrementScore('score2')">+1</button>
-                    <button
-                        class="inline-block rounded bg-red-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
-                        onclick="decrementScore('score2')">-1</button>
+                <div class="mb-4 flex items-center gap-2">
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-green-500 font-extrabold" id="score2green">0</div>
+                        <button
+                            class="inline-block rounded bg-green-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScoreGreen('score2green')">+1</button>
+                    </div>
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-purple-500 font-extrabold" id="score2purple">0</div>
+                        <button
+                            class="inline-block rounded bg-purple-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScorePurple('score2purple')">+5</button>
+                    </div>
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-yellow-500 font-extrabold" id="score2yellow">0</div>
+                        <button
+                            class="inline-block rounded bg-yellow-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScoreYellow('score2yellow')">+10</button>
+                    </div>
+                    <div class="items-center flex flex-col">
+                        <div class="text-2xl text-blue-500 font-extrabold" id="score2blue">0</div>
+                        <button
+                            class="inline-block rounded bg-blue-500 px-8 py-3 text-sm font-medium text-white hover:shadow-xl"
+                            onclick="incrementScoreBlue('score2blue')">+15</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,8 +97,6 @@
             <button class="bg-yellow-500 text-white px-4 py-3 rounded" onclick="resetTimer()">Reset Timer</button>
         </div>
     </div>
-
-
     <script src="/controller/script.js"></script>
 </body>
 
