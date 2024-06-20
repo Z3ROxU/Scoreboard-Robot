@@ -8,24 +8,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <div class="w-screen h-screen grid grid-rows-2 text-white text-4xl md:grid-cols-2">
-        <div class="w-full h-full bg-blue-500 centered md:h-screen" id="team1-display">
-            <div class="text-9xl flex justify-end mr-3" id="timer-display">30:00</div>
-            <div class="flex items-center justify-center p-10">
-                <div class="flex flex-col items-center bg-gray-900 rounded-lg w-full">
-                    <h2>Team A</h2>
-                    <div class="score" id="score1-display">0</div>
-                </div>
+<body class="h-screen flex items-center justify-center bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="bg-gray-700 rounded-lg shadow-2xl p-8 flex items-center justify-between">
+            <!-- Team A -->
+            <div
+                class="bg-red-500 p-12 rounded-lg flex flex-col items-center transform transition duration-500 hover:scale-105">
+                <div class="text-4xl font-bold mb-2 text-white">Team A</div>
+                <div class="text-8xl mb-6 text-white font-extrabold" id="score1-display">0</div>
             </div>
-
-
-        </div>
-
-        <div class="w-full h-full bg-red-500 centered md:h-screen" id="team2-display">
-            <div class="text-9xl ml-3">Time Left</div>
-            <h2>Team B</h2>
-            <div class="score" id="score2-display">0</div>
+            <!-- Timer -->
+            <div class="flex flex-col items-center">
+                <div class="text-9xl font-medium text-yellow-300 mb-7" id="timer-display">30:00</div>
+            </div>
+            <!-- Team B -->
+            <div
+                class="bg-blue-500 p-12 rounded-lg flex flex-col items-center transform transition duration-500 hover:scale-105">
+                <div class="text-4xl font-bold mb-2 text-white">Team B</div>
+                <div class="text-8xl mb-6 text-white font-extrabold" id="score2-display">0</div>
+            </div>
         </div>
     </div>
     <script src="/display/display.js"></script>
